@@ -2,7 +2,8 @@
     const element = {
         score: document.querySelector('.score'),
         start: document.querySelector('.start'),
-        area: document.querySelector('.area')
+        area: document.querySelector('.area'),
+        car: document.createElement('div')
     };
 
     const keys = {
@@ -18,6 +19,8 @@
         speed: 3
     };
 
+    element.car.classList.add('car');
+
     element.score.addEventListener('click', startGame);
     document.addEventListener('keydown', accelerate);
     document.addEventListener('keyup', stop);
@@ -25,6 +28,7 @@
     function startGame() {
         element.start.classList.add('hide');
         settings.start = true;
+        element.area.appendChild(element.car);
         requestAnimationFrame(playGame);
     }
 
