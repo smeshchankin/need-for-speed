@@ -18,6 +18,12 @@
 
     function startGame() {
         element.start.classList.add('hide');
+        requestAnimationFrame(playGame);
+    }
+
+    function playGame() {
+        console.log('Play the Game');
+        requestAnimationFrame(playGame);
     }
 
     function accelerate(event) {
