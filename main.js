@@ -21,7 +21,7 @@
 
     element.car.classList.add('car');
 
-    element.score.addEventListener('click', startGame);
+    element.start.addEventListener('click', startGame);
     document.addEventListener('keydown', accelerate);
     document.addEventListener('keyup', stop);
 
