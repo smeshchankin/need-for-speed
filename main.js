@@ -12,18 +12,26 @@
         ArrowLeft: false
     };
 
+    const settings = {
+        start: false,
+        score: 0,
+        speed: 3
+    };
+
     element.score.addEventListener('click', startGame);
     document.addEventListener('keydown', accelerate);
     document.addEventListener('keyup', stop);
 
     function startGame() {
         element.start.classList.add('hide');
+        settings.start = true;
         requestAnimationFrame(playGame);
     }
 
     function playGame() {
-        console.log('Play the Game');
-        requestAnimationFrame(playGame);
+        if (settings.start) {
+            requestAnimationFrame(playGame);
+        }
     }
 
     function accelerate(event) {
