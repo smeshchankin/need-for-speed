@@ -5,6 +5,13 @@
         area: document.querySelector('.area')
     };
 
+    const keys = {
+        ArrowUp: false,
+        ArrowDown: false,
+        ArrowRight: false,
+        ArrowLeft: false
+    };
+
     element.score.addEventListener('click', startGame);
     document.addEventListener('keydown', accelerate);
     document.addEventListener('keyup', stop);
@@ -15,9 +22,11 @@
 
     function accelerate(event) {
         event.preventDefault();
+        keys[event.key] = true;
     }
 
     function stop(event) {
         event.preventDefault();
+        keys[event.key] = false;
     }
 }());
