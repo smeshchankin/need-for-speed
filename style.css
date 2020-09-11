@@ -8,6 +8,7 @@
     background: transparent url('img/sapuar.png') center / cover no-repeat;
     position: absolute;
     left: calc(300 px - 50 / 2 px);
+    bottom: 10px;
 }
 
 .area {
