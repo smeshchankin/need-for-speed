@@ -59,12 +59,16 @@
     }
 
     function accelerate(event) {
-        event.preventDefault();
-        keys[event.key] = true;
+        if (keys[event.key] !== undefined) {
+            event.preventDefault();
+            keys[event.key] = true;
+        }
     }
 
     function stop(event) {
-        event.preventDefault();
-        keys[event.key] = false;
+        if (keys[event.key] !== undefined) {
+            event.preventDefault();
+            keys[event.key] = false;
+        }
     }
 }());
