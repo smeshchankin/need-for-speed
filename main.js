@@ -51,8 +51,8 @@
                 settings.y += settings.speed;
             }
 
-            element.car.style.left = settings.x;
-            element.car.style.top = settings.y;
+            element.car.style.left = settings.x + 'px';
+            element.car.style.top = settings.y + 'px';
 
             requestAnimationFrame(playGame);
         }
