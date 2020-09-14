@@ -7,7 +7,8 @@
         line: function(id) {
             const line = document.createElement('div');
             line.classList.add('line');
-            line.style.top = (150 + 50) * id + 'px';
+            line.y = (150 + 50) * id;
+            line.style.top = line.y + 'px';
             return line;
         }
     };
@@ -49,6 +50,8 @@
 
     function playGame() {
         if (settings.start) {
+            moveRoad();
+
             if (keys.ArrowLeft) {
                 settings.car.x -= settings.speed;
             }
@@ -93,5 +96,13 @@
         for (let id = 0; id < total; ++id) {
             element.area.appendChild(element.line(id));
         }
+    }
+
+    function moveRoad() {
+        const lines = document.querySelectorAll('.line');
+        lines.forEach(function(line) {
+            line.y += settings.speed;
+            line.style.top = line.y + 'px';
+        });
     }
 }());
