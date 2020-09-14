@@ -17,7 +17,7 @@
         start: false,
         score: 0,
         speed: 3,
-        car: { maxX: 0, maxY: 0 }
+        car: { x: 0, y: 0, maxX: 0, maxY: 0 }
     };
 
     element.car.classList.add('car');
@@ -31,8 +31,8 @@
         element.area.appendChild(element.car);
 
         settings.start = true;
-        settings.x = element.car.offsetLeft;
-        settings.y = element.car.offsetTop;
+        settings.car.x = element.car.offsetLeft;
+        settings.car.y = element.car.offsetTop;
         settings.car.maxX = element.area.offsetWidth - element.car.offsetWidth;
         settings.car.maxY = element.area.offsetHeight - element.car.offsetHeight;
 
@@ -42,25 +42,25 @@
     function playGame() {
         if (settings.start) {
             if (keys.ArrowLeft) {
-                settings.x -= settings.speed;
+                settings.car.x -= settings.speed;
             }
             if (keys.ArrowRight) {
-                settings.x += settings.speed;
+                settings.car.x += settings.speed;
             }
             if (keys.ArrowUp) {
-                settings.y -= settings.speed;
+                settings.car.y -= settings.speed;
             }
             if (keys.ArrowDown) {
-                settings.y += settings.speed;
+                settings.car.y += settings.speed;
             }
 
-            settings.x = Math.min(settings.x, settings.car.maxX);
-            settings.x = Math.max(settings.x, 0);
-            settings.y = Math.min(settings.y, settings.car.maxY);
-            settings.y = Math.max(settings.y, 0);
+            settings.car.x = Math.min(settings.car.x, settings.car.maxX);
+            settings.car.x = Math.max(settings.car.x, 0);
+            settings.car.y = Math.min(settings.car.y, settings.car.maxY);
+            settings.car.y = Math.max(settings.car.y, 0);
 
-            element.car.style.left = settings.x + 'px';
-            element.car.style.top = settings.y + 'px';
+            element.car.style.left = settings.car.x + 'px';
+            element.car.style.top = settings.car.y + 'px';
 
             requestAnimationFrame(playGame);
         }
