@@ -27,6 +27,8 @@
         car: { x: 0, y: 0, maxX: 0, maxY: 0 }
     };
 
+    const totalLines = Math.ceil(element.area.offsetHeight / (150 + 50));
+
     element.car.classList.add('car');
 
     element.start.addEventListener('click', startGame);
@@ -92,8 +94,7 @@
     }
 
     function drawRoadMarkings() {
-        const total = Math.ceil(element.area.offsetHeight / (150 + 50));
-        for (let id = 0; id < total; ++id) {
+        for (let id = 0; id < totalLines + 1; ++id) {
             element.area.appendChild(element.line(id));
         }
     }
@@ -104,7 +105,7 @@
             line.y += settings.speed;
             if (line.y > element.area.offsetHeight) {
 
-                line.y -= Math.ceil(element.area.offsetHeight / (150 + 50)) * (150 + 50);
+                line.y -= (totalLines + 1) * (150 + 50);
             }
             line.style.top = line.y + 'px';
         });
