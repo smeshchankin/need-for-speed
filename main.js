@@ -3,7 +3,13 @@
         score: document.querySelector('.score'),
         start: document.querySelector('.start'),
         area: document.querySelector('.area'),
-        car: document.createElement('div')
+        car: document.createElement('div'),
+        line: function(id) {
+            const line = document.createElement('div');
+            line.classList.add('line');
+            line.style.top = (150 + 50) * id + 'px';
+            return line;
+        }
     };
 
     const keys = {
@@ -27,6 +33,8 @@
     document.addEventListener('keyup', stop);
 
     function startGame() {
+        drawRoadMarkings();
+
         element.start.classList.add('hide');
         element.area.appendChild(element.car);
 
@@ -77,6 +85,13 @@
         if (keys[event.key] !== undefined) {
             event.preventDefault();
             keys[event.key] = false;
+        }
+    }
+
+    function drawRoadMarkings() {
+        const total = Math.ceil(element.area.offsetHeight / (150 + 50));
+        for (let id = 0; id < total; ++id) {
+            element.area.appendChild(element.line(id));
         }
     }
 }());
