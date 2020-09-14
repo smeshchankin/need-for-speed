@@ -102,6 +102,10 @@
         const lines = document.querySelectorAll('.line');
         lines.forEach(function(line) {
             line.y += settings.speed;
+            if (line.y > element.area.offsetHeight) {
+
+                line.y -= Math.ceil(element.area.offsetHeight / (150 + 50)) * (150 + 50);
+            }
             line.style.top = line.y + 'px';
         });
     }
