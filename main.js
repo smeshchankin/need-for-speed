@@ -16,7 +16,8 @@
     const settings = {
         start: false,
         score: 0,
-        speed: 3
+        speed: 3,
+        car: { maxX: 0, maxY: 0 }
     };
 
     element.car.classList.add('car');
@@ -32,6 +33,8 @@
         settings.start = true;
         settings.x = element.car.offsetLeft;
         settings.y = element.car.offsetTop;
+        settings.car.maxX = element.area.offsetWidth - element.car.offsetWidth;
+        settings.car.maxY = element.area.offsetHeight - element.car.offsetHeight;
 
         requestAnimationFrame(playGame);
     }
@@ -50,6 +53,11 @@
             if (keys.ArrowDown) {
                 settings.y += settings.speed;
             }
+
+            settings.x = Math.min(settings.x, settings.car.maxX);
+            settings.x = Math.max(settings.x, 0);
+            settings.y = Math.min(settings.y, settings.car.maxY);
+            settings.y = Math.max(settings.y, 0);
 
             element.car.style.left = settings.x + 'px';
             element.car.style.top = settings.y + 'px';
