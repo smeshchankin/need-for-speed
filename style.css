@@ -16,7 +16,7 @@
     overflow: hidden;
 }
 
-.car {
+.car, .enemy {
     position: absolute;
     width: 50px;
     height: 110px;
@@ -24,6 +24,12 @@
     bottom: 10px;
 
     background: transparent url('img/sapuar.png') center / cover no-repeat;
+}
+
+.enemy {
+    width: 64px;
+    height: 134px;
+    background: transparent url('img/nioubiteul.png') center / cover no-repeat;
 }
 
 .line {

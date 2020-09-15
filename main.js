@@ -24,6 +24,7 @@
         start: false,
         score: 0,
         speed: 3,
+        traffic: 3,
         car: { x: 0, y: 0, maxX: 0, maxY: 0 }
     };
 
@@ -37,6 +38,7 @@
 
     function startGame() {
         drawRoadMarkings();
+        drawEnemyCars();
 
         element.start.classList.add('hide');
         element.area.appendChild(element.car);
@@ -96,6 +98,16 @@
     function drawRoadMarkings() {
         for (let id = 0; id < totalLines + 1; ++id) {
             element.area.appendChild(element.line(id));
+        }
+    }
+
+    function drawEnemyCars() {
+        for (let i = 0; i < 3; ++i) {
+            const enemy = document.createElement('div');
+            enemy.classList.add('enemy');
+            enemy.y = 100 * settings.traffic * (i + 1);
+            enemy.style.top = enemy.y + 'px';
+            element.area.appendChild(enemy);
         }
     }
 
