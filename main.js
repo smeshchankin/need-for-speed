@@ -55,6 +55,7 @@
     function playGame() {
         if (settings.start) {
             moveRoad();
+            moveEnemyCars();
 
             if (keys.ArrowLeft) {
                 settings.car.x -= settings.speed;
@@ -105,7 +106,7 @@
         for (let i = 0; i < 3; ++i) {
             const enemy = document.createElement('div');
             enemy.classList.add('enemy');
-            enemy.y = 100 * settings.traffic * (i + 1);
+            enemy.y = -100 * settings.traffic * (i + 1);
             enemy.style.top = enemy.y + 'px';
             element.area.appendChild(enemy);
         }
@@ -120,6 +121,14 @@
                 line.y -= (totalLines + 1) * (150 + 50);
             }
             line.style.top = line.y + 'px';
+        });
+    }
+
+    function moveEnemyCars() {
+        const enemies = document.querySelectorAll('.enemy');
+        enemies.forEach(function(enemy) {
+            enemy.y += settings.speed;
+            enemy.style.top = enemy.y + 'px';
         });
     }
 }());
