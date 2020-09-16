@@ -6,9 +6,10 @@
         car: document.createElement('div'),
         line: function(id) {
             const line = document.createElement('div');
+            definePropertyY(line);
             line.classList.add('line');
             line.y = (150 + 50) * id;
-            line.style.top = line.y + 'px';
+
             return line;
         }
     };
@@ -105,9 +106,9 @@
     function drawEnemyCars() {
         for (let i = 0; i < 3; ++i) {
             const enemy = document.createElement('div');
+            definePropertyY(enemy);
             enemy.classList.add('enemy');
             enemy.y = -100 * settings.traffic * (i + 1);
-            enemy.style.top = enemy.y + 'px';
             element.area.appendChild(enemy);
         }
     }
@@ -117,10 +118,8 @@
         lines.forEach(function(line) {
             line.y += settings.speed;
             if (line.y > element.area.offsetHeight) {
-
                 line.y -= (totalLines + 1) * (150 + 50);
             }
-            line.style.top = line.y + 'px';
         });
     }
 
@@ -128,7 +127,18 @@
         const enemies = document.querySelectorAll('.enemy');
         enemies.forEach(function(enemy) {
             enemy.y += settings.speed;
-            enemy.style.top = enemy.y + 'px';
+        });
+    }
+
+    function definePropertyY(obj) {
+        Object.defineProperty(obj, 'y', { 
+            set: function(y) {
+                this._y = y;
+                this.style.top = y + 'px';
+            },
+            get: function() {
+                return this._y;
+            }
         });
     }
 }());
