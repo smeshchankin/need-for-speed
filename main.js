@@ -110,6 +110,7 @@
             definePropertyY(enemy);
             enemy.classList.add('enemy');
             enemy.y = -100 * settings.traffic * (i + 1);
+            enemy.speed = Math.ceil(settings.speed * Math.random());
             element.area.appendChild(enemy);
         }
     }
@@ -127,9 +128,10 @@
     function moveEnemyCars() {
         const enemies = document.querySelectorAll('.enemy');
         enemies.forEach(function(enemy) {
-            enemy.y += settings.speed;
+            enemy.y += enemy.speed;
             if (enemy.y > element.area.offsetHeight) {
                 enemy.y -= (totalCars + 1) * (150 + 50);
+                enemy.speed = Math.ceil(settings.speed * Math.random());
             }
         });
     }
