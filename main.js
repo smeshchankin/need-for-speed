@@ -110,6 +110,7 @@
             definePropertyY(enemy);
             enemy.classList.add('enemy');
             enemy.y = -100 * settings.traffic * (i + 1);
+            enemy.style.left = Math.ceil(Math.random() * element.area.offsetWidth) + 'px';
             enemy.speed = Math.ceil(settings.speed * Math.random());
             element.area.appendChild(enemy);
         }
@@ -131,6 +132,7 @@
             enemy.y += enemy.speed;
             if (enemy.y > element.area.offsetHeight) {
                 enemy.y -= (totalCars + 1) * (150 + 50);
+                enemy.style.left = Math.ceil(Math.random() * element.area.offsetWidth) + 'px';
                 enemy.speed = Math.ceil(settings.speed * Math.random());
             }
         });
