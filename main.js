@@ -29,6 +29,8 @@
         car: { x: 0, y: 0, maxX: 0, maxY: 0 }
     };
 
+    const carImages = ['nioubiteul', 'pigeau', 'sapuar'];
+
     const totalLines = Math.ceil(element.area.offsetHeight / (150 + 50));
     const totalCars = 3;
 
@@ -110,6 +112,9 @@
             definePropertyY(enemy);
             enemy.classList.add('enemy');
             enemy.y = -100 * settings.traffic * (i + 1);
+            const car = carImages[Math.ceil(Math.random() * 2)];
+            enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
+
             const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
             enemy.style.left = Math.ceil(Math.random() * maxPositionX) + 'px';
             enemy.speed = Math.ceil(settings.speed * Math.random());
@@ -133,6 +138,9 @@
             enemy.y += enemy.speed;
             if (enemy.y > element.area.offsetHeight) {
                 enemy.y -= (totalCars + 1) * (150 + 50);
+                const car = carImages[Math.ceil(Math.random() * 2)];
+                enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
+
                 const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
                 enemy.style.left = Math.ceil(Math.random() * maxPositionX) + 'px';
                 enemy.speed = Math.ceil(settings.speed * Math.random());
