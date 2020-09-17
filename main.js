@@ -30,6 +30,7 @@
     };
 
     const totalLines = Math.ceil(element.area.offsetHeight / (150 + 50));
+    const totalCars = 3;
 
     element.car.classList.add('car');
 
@@ -104,7 +105,7 @@
     }
 
     function drawEnemyCars() {
-        for (let i = 0; i < 3; ++i) {
+        for (let i = 0; i < totalCars; ++i) {
             const enemy = document.createElement('div');
             definePropertyY(enemy);
             enemy.classList.add('enemy');
@@ -127,6 +128,9 @@
         const enemies = document.querySelectorAll('.enemy');
         enemies.forEach(function(enemy) {
             enemy.y += settings.speed;
+            if (enemy.y > element.area.offsetHeight) {
+                enemy.y -= (totalCars + 1) * (150 + 50);
+            }
         });
     }
 
