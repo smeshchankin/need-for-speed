@@ -4,10 +4,13 @@
         start: document.querySelector('.start'),
         area: document.querySelector('.area'),
         car: document.createElement('div'),
-        line: function(id) {
+        line: function(id, offsetLeft) {
             const line = document.createElement('div');
             definePropertyY(line);
             line.classList.add('line');
+            if (offsetLeft) {
+                line.style.left = offsetLeft + 'px';
+            }
             line.y = (150 + 50) * id;
 
             return line;
@@ -102,7 +105,9 @@
 
     function drawRoadMarkings() {
         for (let id = 0; id < totalLines + 1; ++id) {
-            element.area.appendChild(element.line(id));
+            for (let offset = 1; offset < 4; ++offset) {
+                element.area.appendChild(element.line(id, offset * 75 - 5));
+            }
         }
     }
 
