@@ -122,7 +122,7 @@
             element.area.appendChild(enemy);
 
             const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
-            enemy.style.left = random(0, maxPositionX) + 'px';
+            enemy.style.left = random(0, 3) * 75 + (75 - enemy.offsetWidth) / 2 + 'px';
             enemy.speed = random(0, settings.speed);
         }
     }
@@ -147,7 +147,7 @@
                 enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
 
                 const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
-                enemy.style.left = random(0, maxPositionX) + 'px';
+                enemy.style.left = random(0, 3) * 75 + (75 - enemy.offsetWidth) / 2 + 'px';
                 enemy.speed = random(0, settings.speed);
             }
         });
