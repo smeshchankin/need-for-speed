@@ -117,13 +117,13 @@
             definePropertyY(enemy);
             enemy.classList.add('enemy');
             enemy.y = -100 * settings.traffic * (i + 1);
-            const car = carImages[Math.ceil(Math.random() * 2)];
+            const car = carImages[random(0, 2)];
             enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
             element.area.appendChild(enemy);
 
             const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
-            enemy.style.left = Math.ceil(Math.random() * maxPositionX) + 'px';
-            enemy.speed = Math.ceil(settings.speed * Math.random());
+            enemy.style.left = random(0, maxPositionX) + 'px';
+            enemy.speed = random(0, settings.speed);
         }
     }
 
@@ -143,12 +143,12 @@
             enemy.y += enemy.speed;
             if (enemy.y > element.area.offsetHeight) {
                 enemy.y -= (totalCars + 1) * (150 + 50);
-                const car = carImages[Math.ceil(Math.random() * 2)];
+                const car = carImages[random(0, 2)];
                 enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
 
                 const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
-                enemy.style.left = Math.ceil(Math.random() * maxPositionX) + 'px';
-                enemy.speed = Math.ceil(settings.speed * Math.random());
+                enemy.style.left = random(0, maxPositionX) + 'px';
+                enemy.speed = random(0, settings.speed);
             }
         });
     }
@@ -163,5 +163,9 @@
                 return this._y;
             }
         });
+    }
+
+    function random(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1));
     }
 }());
