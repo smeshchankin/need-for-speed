@@ -119,11 +119,11 @@
             enemy.y = -100 * settings.traffic * (i + 1);
             const car = carImages[Math.ceil(Math.random() * 2)];
             enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
+            element.area.appendChild(enemy);
 
             const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
             enemy.style.left = Math.ceil(Math.random() * maxPositionX) + 'px';
             enemy.speed = Math.ceil(settings.speed * Math.random());
-            element.area.appendChild(enemy);
         }
     }
 
