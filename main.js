@@ -123,7 +123,7 @@
 
             const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
             enemy.style.left = random(0, 3) * 75 + (75 - enemy.offsetWidth) / 2 + 'px';
-            enemy.speed = random(0, settings.speed);
+            enemy.speed = random(1, settings.speed - 1);
         }
     }
 
@@ -148,7 +148,7 @@
 
                 const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
                 enemy.style.left = random(0, 3) * 75 + (75 - enemy.offsetWidth) / 2 + 'px';
-                enemy.speed = random(0, settings.speed);
+                enemy.speed = random(1, settings.speed - 1);
             }
         });
     }
