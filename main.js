@@ -116,14 +116,8 @@
             const enemy = document.createElement('div');
             definePropertyY(enemy);
             enemy.classList.add('enemy');
-            enemy.y = -100 * settings.traffic * (i + 1);
-            const car = carImages[random(0, 2)];
-            enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
-            element.area.appendChild(enemy);
 
-            const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
-            enemy.style.left = random(0, 3) * 75 + (75 - enemy.offsetWidth) / 2 + 'px';
-            enemy.speed = random(1, settings.speed - 1);
+            resetEnemyCar(enemy, true);
         }
     }
 
@@ -142,15 +136,22 @@
         enemies.forEach(function(enemy) {
             enemy.y += enemy.speed;
             if (enemy.y > element.area.offsetHeight) {
-                enemy.y -= (totalCars + 1) * (150 + 50);
-                const car = carImages[random(0, 2)];
-                enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
-
-                const maxPositionX = element.area.offsetWidth - enemy.offsetWidth;
-                enemy.style.left = random(0, 3) * 75 + (75 - enemy.offsetWidth) / 2 + 'px';
-                enemy.speed = random(1, settings.speed - 1);
+                resetEnemyCar(enemy, false);
             }
         });
+    }
+
+    function resetEnemyCar(enemy, appendCar) {
+        enemy.y -= (totalCars + 1) * (150 + 50);
+        const car = carImages[random(0, 2)];
+        enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
+        if (appendCar) {
+            element.area.appendChild(enemy);
+        }
+
+        const laneWidth = element.area.offsetWidth / 4;
+        enemy.style.left = random(0, 3) * laneWidth + (laneWidth - enemy.offsetWidth) / 2 + 'px';
+        enemy.speed = random(1, settings.speed - 1);
     }
 
     function definePropertyY(obj) {
