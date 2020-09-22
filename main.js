@@ -44,6 +44,10 @@
     document.addEventListener('keyup', stop);
 
     function startGame() {
+        element.area.innerHTML = '';
+        element.car.style.left = '125px';
+        element.car.style.top = 'auto';
+
         drawRoadMarkings();
         drawEnemyCars();
 
