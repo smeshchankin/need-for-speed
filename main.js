@@ -138,7 +138,8 @@
         enemies.forEach(function(enemy) {
             const enemyRect = enemy.getBoundingClientRect();
             if (isAccident(element.car, enemy)) {
-                console.log("Accident");
+                settings.start = false;
+                alert("Accident was happened");
             }
 
             enemy.y += enemy.speed;
