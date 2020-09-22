@@ -132,8 +132,15 @@
     }
 
     function moveEnemyCars() {
+        const carRect = element.car.getBoundingClientRect();
+
         const enemies = document.querySelectorAll('.enemy');
         enemies.forEach(function(enemy) {
+            const enemyRect = enemy.getBoundingClientRect();
+            if (isAccident(element.car, enemy)) {
+                console.log("Accident");
+            }
+
             enemy.y += enemy.speed;
             if (enemy.y > element.area.offsetHeight) {
                 resetEnemyCar(enemy, false);
@@ -168,5 +175,11 @@
 
     function random(minValue, maxValue) {
         return minValue + Math.floor(Math.random() * (maxValue - minValue + 1));
+    }
+
+    function isAccident(car1, car2) {
+        const rect = [car1.getBoundingClientRect(), car2.getBoundingClientRect()];
+        return rect[0].top <= rect[1].bottom && rect[1].top <= rect[0].bottom &&
+            rect[0].left <= rect[1].right && rect[1].left <= rect[0].right;
     }
 }());
