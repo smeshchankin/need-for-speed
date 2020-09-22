@@ -7,6 +7,23 @@
     display: none;
 }
 
+.score {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    text-align: center;
+
+    z-index: 1;
+    color: skyblue;
+    background-color: black;
+
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    font-weight: 500;
+}
+
 .start {
     position: absolute;
     left: 0;

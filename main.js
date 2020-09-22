@@ -50,6 +50,7 @@
         element.start.classList.add('hide');
         element.area.appendChild(element.car);
 
+        settings.score = 0;
         settings.start = true;
         settings.car.x = element.car.offsetLeft;
         settings.car.y = element.car.offsetTop;
@@ -61,6 +62,9 @@
 
     function playGame() {
         if (settings.start) {
+            settings.score += settings.speed;
+            element.score.innerHTML = 'SCORE:<br />' + settings.score;
+
             moveRoad();
             moveEnemyCars();
 
