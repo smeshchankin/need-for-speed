@@ -143,7 +143,8 @@
             const enemyRect = enemy.getBoundingClientRect();
             if (isAccident(element.car, enemy)) {
                 settings.start = false;
-                alert("Accident was happened");
+                element.start.classList.remove('hide');
+                element.start.style.top = element.score.offsetHeight;
             }
 
             enemy.y += enemy.speed;
