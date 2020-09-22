@@ -149,13 +149,13 @@
     }
 
     function resetEnemyCar(enemy, appendCar) {
-        enemy.y -= (totalCars + 1) * (150 + 50);
         const car = carImages[random(0, 2)];
         enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
         if (appendCar) {
             element.area.appendChild(enemy);
         }
 
+        enemy.y = -enemy.offsetHeight - 50;
         const laneWidth = element.area.offsetWidth / 4;
         enemy.style.left = random(0, 3) * laneWidth + (laneWidth - enemy.offsetWidth) / 2 + 'px';
         enemy.speed = random(1, settings.speed - 1);
