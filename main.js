@@ -45,14 +45,14 @@
 
     function startGame() {
         element.area.innerHTML = '';
-        element.car.style.left = '125px';
-        element.car.style.top = 'auto';
 
         drawRoadMarkings();
         drawEnemyCars();
 
         element.start.classList.add('hide');
         element.area.appendChild(element.car);
+        element.car.style.left = (element.area.offsetWidth - element.car.offsetWidth) / 2;
+        element.car.style.top = 'auto';
 
         settings.score = 0;
         settings.start = true;
