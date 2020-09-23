@@ -49,11 +49,13 @@
     document.addEventListener('keyup', stop);
 
     document.addEventListener('touchstart', function(event) {
-        touch.start = { x: event.screenX, y: event.screenX };
-        touch.end = { x: event.screenX, y: event.screenX };
+        let data = event.changedTouches[0];
+        touch.start = { x: data.screenX, y: data.screenX };
+        touch.end = { x: data.screenX, y: data.screenX };
     }, false);
     document.addEventListener('touchend', function(event) {
-        touch.end = { x: event.screenX, y: event.screenX };
+        let data = event.changedTouches[0];
+        touch.end = { x: data.screenX, y: data.screenX };
     }, false);
 
     function startGame() {
