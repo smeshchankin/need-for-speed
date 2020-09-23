@@ -32,6 +32,11 @@
         car: { x: 0, y: 0, maxX: 0, maxY: 0 }
     };
 
+    const touch = {
+        start: { x: 0, y: 0 },
+        end: { x: 0, y: 0 }
+    }
+
     const carImages = ['nioubiteul', 'pigeau', 'sapuar'];
 
     const totalLines = Math.ceil(element.area.offsetHeight / (150 + 50));
@@ -42,6 +47,14 @@
     element.start.addEventListener('click', startGame);
     document.addEventListener('keydown', accelerate);
     document.addEventListener('keyup', stop);
+
+    document.addEventListener('touchstart', function(event) {
+        touch.start = { x: event.screenX, y: event.screenX };
+        touch.end = { x: event.screenX, y: event.screenX };
+    }, false);
+    document.addEventListener('touchend', function(event) {
+        touch.end = { x: event.screenX, y: event.screenX };
+    }, false);
 
     function startGame() {
         element.area.innerHTML = '';
@@ -92,6 +105,15 @@
             }
             if (keys.ArrowDown) {
                 settings.car.y += settings.speed;
+            }
+
+            if (touch.start.x != touch.end.x) {
+                settings.car.x += touch.end.x - touch.start.x;
+                touch.start.x = touch.end.x;
+            }
+            if (touch.start.y != touch.end.y) {
+                settings.car.y += touch.end.y - touch.start.y;
+                touch.start.y = touch.end.y;
             }
 
             settings.car.x = Math.min(settings.car.x, settings.car.maxX);
