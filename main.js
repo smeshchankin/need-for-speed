@@ -55,6 +55,8 @@
         element.car.style.top = 'auto';
 
         settings.score = 0;
+        settings.speed = 3;
+        settings.traffic = 3;
         settings.start = true;
         settings.car.x = element.car.offsetLeft;
         settings.car.y = element.car.offsetTop;
@@ -66,6 +68,13 @@
 
     function playGame() {
         if (settings.start) {
+            settings.speed = Math.floor(settings.score / 10000) + 3;
+            if (settings.traffic < Math.floor(settings.score / 5000) + 3) {
+                console.log('Add new enemy car');
+                ++settings.traffic;
+                addEnemyCar();
+            }
+
             settings.score += settings.speed;
             element.score.innerHTML = 'SCORE:<br />' + settings.score;
 
@@ -121,12 +130,16 @@
 
     function drawEnemyCars() {
         for (let i = 0; i < totalCars; ++i) {
-            const enemy = document.createElement('div');
+            addEnemyCar();
+        }
+    }
+
+    function addEnemyCar() {
+        const enemy = document.createElement('div');
             definePropertyY(enemy);
             enemy.classList.add('enemy');
 
             resetEnemyCar(enemy, true);
-        }
     }
 
     function moveRoad() {
