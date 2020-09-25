@@ -27,6 +27,7 @@
     const settings = {
         start: false,
         score: 0,
+        turnStep: 3,
         speed: 3,
         traffic: 3,
         car: { x: 0, y: 0, maxX: 0, maxY: 0 }
@@ -97,10 +98,10 @@
             moveEnemyCars();
 
             if (keys.ArrowLeft) {
-                settings.car.x -= settings.speed;
+                settings.car.x -= settings.turnStep;
             }
             if (keys.ArrowRight) {
-                settings.car.x += settings.speed;
+                settings.car.x += settings.turnStep;
             }
             if (keys.ArrowUp) {
                 settings.car.y -= settings.speed;
