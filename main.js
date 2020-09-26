@@ -26,6 +26,7 @@
 
     const settings = {
         start: false,
+        laneCount: 4,
         score: 0,
         turnStep: 3,
         speed: 3,
@@ -46,8 +47,8 @@
     element.car.classList.add('car');
 
     element.start.addEventListener('click', startGame);
-    document.addEventListener('keydown', accelerate);
-    document.addEventListener('keyup', stop);
+    document.addEventListener('keydown', keyDownHandler);
+    document.addEventListener('keyup', keyUpHandler);
 
     document.addEventListener('touchstart', function(event) {
         let data = event.changedTouches[0];
@@ -119,10 +120,8 @@
                 touch.start.y = touch.end.y;
             }
 
-            settings.car.x = Math.min(settings.car.x, settings.car.maxX);
-            settings.car.x = Math.max(settings.car.x, 0);
-            settings.car.y = Math.min(settings.car.y, settings.car.maxY);
-            settings.car.y = Math.max(settings.car.y, 0);
+            settings.car.x = Math.max(Math.min(settings.car.x, settings.car.maxX), 0);
+            settings.car.y = Math.max(Math.min(settings.car.y, settings.car.maxY), 0);
 
             element.car.style.left = settings.car.x + 'px';
             element.car.style.top = settings.car.y + 'px';
@@ -131,24 +130,27 @@
         }
     }
 
-    function accelerate(event) {
-        if (keys[event.key] !== undefined) {
-            event.preventDefault();
-            keys[event.key] = true;
-        }
+    function keyDownHandler(event) {
+        keyboardHandler(event, true);
     }
 
-    function stop(event) {
+    function keyUpHandler(event) {
+        keyboardHandler(event, false);
+    }
+
+    function keyboardHandler(event, state) {
         if (keys[event.key] !== undefined) {
             event.preventDefault();
-            keys[event.key] = false;
+            keys[event.key] = state;
         }
     }
 
     function drawRoadMarkings() {
+        const offset = element.area.offsetWidth / settings.laneCount;
+
         for (let id = 0; id < totalLines + 1; ++id) {
-            for (let offset = 1; offset < 4; ++offset) {
-                element.area.appendChild(element.line(id, offset * 75 - 5));
+            for (let laneId = 1; laneId < settings.laneCount; ++laneId) {
+                element.area.appendChild(element.line(id, laneId * offset - 5));
             }
         }
     }
@@ -178,15 +180,10 @@
     }
 
     function moveEnemyCars() {
-        const carRect = element.car.getBoundingClientRect();
-
         const enemies = document.querySelectorAll('.enemy');
         enemies.forEach(function(enemy) {
-            const enemyRect = enemy.getBoundingClientRect();
             if (isAccident(element.car, enemy)) {
-                settings.start = false;
-                element.start.classList.remove('hide');
-                element.start.style.top = element.score.offsetHeight;
+                stopGame();
             }
 
             enemy.y += enemy.speed;
@@ -196,16 +193,23 @@
         });
     }
 
+    function stopGame() {
+        settings.start = false;
+        element.start.classList.remove('hide');
+        element.start.style.top = element.score.offsetHeight;
+    }
+
     function resetEnemyCar(enemy, appendCar) {
-        const car = carImages[random(0, 2)];
+        const car = carImages[random(0, carImages.length - 1)];
         enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
         if (appendCar) {
             element.area.appendChild(enemy);
         }
 
         enemy.y = -enemy.offsetHeight - 50;
-        const laneWidth = element.area.offsetWidth / 4;
-        enemy.style.left = random(0, 3) * laneWidth + (laneWidth - enemy.offsetWidth) / 2 + 'px';
+        const laneWidth = element.area.offsetWidth / settings.laneCount;
+        enemy.style.left = random(0, settings.laneCount - 1) * laneWidth
+            + (laneWidth - enemy.offsetWidth) / 2 + 'px';
         enemy.speed = random(1, settings.speed - 1);
     }
 
