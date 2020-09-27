@@ -14,6 +14,13 @@
             line.y = (150 + 50) * id;
 
             return line;
+        },
+        audio: function() {
+            const elem = document.createElement('embed');
+            elem.src = 'audio/race.mp3';
+            elem.type = 'audio/mp3';
+            elem.style.cssText = 'position: absolute; top: -100px;';
+            return elem;
         }
     };
 
@@ -62,6 +69,7 @@
 
     function startGame() {
         element.area.innerHTML = '';
+        element.area.append(element.audio());
 
         drawRoadMarkings();
         drawEnemyCars();
