@@ -75,7 +75,7 @@
         drawEnemyCars();
 
         element.start.classList.add('hide');
-        element.area.appendChild(element.car);
+        element.area.append(element.car);
         element.car.style.left = (element.area.offsetWidth - element.car.offsetWidth) / 2;
         element.car.style.top = 'auto';
 
@@ -158,7 +158,7 @@
 
         for (let id = 0; id < totalLines + 1; ++id) {
             for (let laneId = 1; laneId < settings.laneCount; ++laneId) {
-                element.area.appendChild(element.line(id, laneId * offset - 5));
+                element.area.append(element.line(id, laneId * offset - 5));
             }
         }
     }
@@ -211,7 +211,7 @@
         const car = carImages[random(0, carImages.length - 1)];
         enemy.style.background = 'transparent url(\'img/' + car + '.png\') center / cover no-repeat';
         if (appendCar) {
-            element.area.appendChild(enemy);
+            element.area.append(enemy);
         }
 
         enemy.y = -enemy.offsetHeight - 50;
