@@ -14,13 +14,6 @@
             line.y = (150 + 50) * id;
 
             return line;
-        },
-        audio: function() {
-            const elem = document.createElement('embed');
-            elem.src = 'audio/race.mp3';
-            elem.type = 'audio/mp3';
-            elem.style.cssText = 'position: absolute; top: -100px;';
-            return elem;
         }
     };
 
@@ -51,6 +44,10 @@
     const totalLines = Math.ceil(element.area.offsetHeight / (150 + 50));
     const totalCars = 3;
 
+    const audio = new Audio();
+    audio.type = 'audio/mp3';
+    audio.src = 'audio/race.mp3';
+
     element.car.classList.add('car');
 
     element.start.addEventListener('click', startGame);
@@ -69,7 +66,7 @@
 
     function startGame() {
         element.area.innerHTML = '';
-        element.area.append(element.audio());
+        audio.play();
 
         drawRoadMarkings();
         drawEnemyCars();
@@ -202,6 +199,7 @@
     }
 
     function stopGame() {
+        audio.pause();
         settings.start = false;
         element.start.classList.remove('hide');
         element.start.style.top = element.score.offsetHeight;
