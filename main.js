@@ -56,12 +56,12 @@
 
     document.addEventListener('touchstart', function(event) {
         let data = event.changedTouches[0];
-        touch.start = { x: data.screenX, y: data.screenX };
-        touch.end = { x: data.screenX, y: data.screenX };
+        touch.start = { x: data.screenX, y: data.screenY };
+        touch.end = { x: data.screenX, y: data.screenY };
     }, false);
     document.addEventListener('touchend', function(event) {
         let data = event.changedTouches[0];
-        touch.end = { x: data.screenX, y: data.screenX };
+        touch.end = { x: data.screenX, y: data.screenY };
     }, false);
 
     function startGame() {
