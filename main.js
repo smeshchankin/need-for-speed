@@ -47,6 +47,7 @@
     const audio = new Audio();
     audio.type = 'audio/mp3';
     audio.src = 'audio/race.mp3';
+    audio.loop = true;
 
     element.car.classList.add('car');
 
