@@ -1,4 +1,17 @@
 (function() {
+    class Road {
+        constructor(selector, width, laneCount) {
+            this.selector = selector;
+            this.width = width;
+            this.laneCount = laneCount;
+
+            this.element = document.querySelector(selector);
+            this.element.style.width = width + 'px';
+        }
+    }
+
+    const road = new Road('.area', 300, 4);
+
     const element = {
         score: document.querySelector('.score'),
         start: document.querySelector('.start'),
