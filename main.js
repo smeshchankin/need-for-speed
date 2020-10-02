@@ -10,6 +10,17 @@
         }
     }
 
+    class Car {
+        constructor(lane, color) {
+            this.lane = lane;
+            this.color = color;
+        }
+
+        setLane(lane) {
+            this.lane = lane;
+        }
+    }
+
     const road = new Road('.area', 300, 4);
 
     const element = {
