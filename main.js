@@ -9,6 +9,14 @@
         init() {
             this.element = document.querySelector(this.selector);
             this.element.style.width = this.width + 'px';
+
+            const totalLines = Math.ceil(this.element.offsetHeight / (150 + 50));
+            const offset = this.width / this.laneCount;
+            for (let id = 0; id < totalLines + 1; ++id) {
+                for (let laneId = 1; laneId < this.laneCount; ++laneId) {
+                    element.area.append(element.line(id, laneId * offset - 5));
+                }
+            }
         }
     }
 
