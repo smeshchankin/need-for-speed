@@ -2,11 +2,13 @@
     class Road {
         constructor(selector, width, laneCount) {
             this.selector = selector;
-            this.width = width;
-            this.laneCount = laneCount;
+            this.width = +width;
+            this.laneCount = +laneCount;
+        }
 
-            this.element = document.querySelector(selector);
-            this.element.style.width = width + 'px';
+        init() {
+            this.element = document.querySelector(this.selector);
+            this.element.style.width = this.width + 'px';
         }
     }
 
