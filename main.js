@@ -21,13 +21,21 @@
     }
 
     class Car {
-        constructor(lane, color) {
+        constructor(lane, color, image) {
             this.lane = lane;
             this.color = color;
+            this.image = image;
         }
 
         setLane(lane) {
             this.lane = lane;
+        }
+
+        setPosition(x, y) {
+            this.x = x;
+            if (y !== undefined) {
+                this.y = y;
+            }
         }
     }
 
