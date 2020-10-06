@@ -103,10 +103,7 @@
     const totalLines = Math.ceil(element.area.offsetHeight / (150 + 50));
     const totalCars = 3;
 
-    const audio = new Audio();
-    audio.type = 'audio/mp3';
-    audio.src = 'audio/race.mp3';
-    audio.loop = true;
+    const music = new Music('audio/race.mp3');
 
     element.car.classList.add('car');
 
@@ -126,7 +123,7 @@
 
     function startGame() {
         element.area.innerHTML = '';
-        audio.play();
+        music.play();
 
         drawRoadMarkings();
         drawEnemyCars();
@@ -259,7 +256,7 @@
     }
 
     function stopGame() {
-        audio.pause();
+        music.pause();
         settings.start = false;
         element.start.classList.remove('hide');
         element.start.style.top = element.score.offsetHeight;
