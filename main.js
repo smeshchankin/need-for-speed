@@ -39,6 +39,23 @@
         }
     }
 
+    class Music {
+        constructor(path, type) {
+            this.audio = new Audio();
+            audio.src = path;
+            audio.type = type || 'audio/mp3';
+            audio.loop = true;
+        }
+
+        play() {
+            this.audio.play();
+        }
+
+        pause() {
+            this.audio.pause();
+        }
+    }
+
     const road = new Road('.area', 300, 4);
 
     const element = {
