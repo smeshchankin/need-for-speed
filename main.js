@@ -41,10 +41,12 @@
 
     class Music {
         constructor(path, type) {
-            this.audio = new Audio();
+            const audio = new Audio();
             audio.src = path;
             audio.type = type || 'audio/mp3';
             audio.loop = true;
+
+            this.audio = audio;
         }
 
         play() {
