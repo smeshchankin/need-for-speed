@@ -58,6 +58,13 @@
         }
     }
 
+    class Game {
+        constructor(playerCar, road) {
+            this.playerCar = playerCar;
+            this.road = road;
+        }
+    }
+
     const road = new Road('.area', 300, 4);
 
     const element = {
