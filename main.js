@@ -65,7 +65,10 @@
         }
     }
 
-    const road = new Road('.area', 300, 4);
+    const game = new Game(
+        new Car(2, 'red', 'img/sapuar.png'),
+        new Road('.area', 300, 4)
+    );
 
     const element = {
         score: document.querySelector('.score'),
