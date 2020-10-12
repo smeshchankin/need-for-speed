@@ -39,12 +39,35 @@ import Music from "modules/Music.js";
                 this.y = y;
             }
         }
+
+        draw() {
+        }
     }
 
     class Game {
         constructor(playerCar, road) {
             this.playerCar = playerCar;
+            this.enemiyCars = [];
             this.road = road;
+
+            this._started = false;
+        }
+
+        start() {
+            const play = () => {
+                if (this._started) {
+                    requestAnimationFrame(play);
+                }
+            };
+
+            this._started = true;
+            this.road.drawMarkings();
+            this.enemyCars.forEach(emeny => emeny.draw());
+            requestAnimationFrame(play);
+        }
+
+        stop() {
+            this._started = false;
         }
     }
 
@@ -220,10 +243,12 @@ import Music from "modules/Music.js";
 
     function addEnemyCar() {
         const enemy = document.createElement('div');
-            definePropertyY(enemy);
-            enemy.classList.add('enemy');
+        definePropertyY(enemy);
+        enemy.classList.add('enemy');
 
-            resetEnemyCar(enemy, true);
+        resetEnemyCar(enemy, true);
+
+        return enemy;
     }
 
     function moveRoad() {
