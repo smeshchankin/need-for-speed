@@ -45,10 +45,11 @@ import Music from "modules/Music.js";
     }
 
     class Game {
-        constructor(playerCar, road) {
+        constructor(playerCar, road, music) {
             this.playerCar = playerCar;
             this.enemiyCars = [];
             this.road = road;
+            this.music = music;
 
             this._started = false;
         }
@@ -61,6 +62,7 @@ import Music from "modules/Music.js";
             };
 
             this._started = true;
+            this.music.start();
             this.road.drawMarkings();
             this.enemyCars.forEach(emeny => emeny.draw());
             requestAnimationFrame(play);
@@ -68,12 +70,14 @@ import Music from "modules/Music.js";
 
         stop() {
             this._started = false;
+            this.music.pause();
         }
     }
 
     const game = new Game(
         new Car(2, 'red', 'img/sapuar.png'),
-        new Road('.area', 300, 4)
+        new Road('.area', 300, 4),
+        new Music('audio/race.mp3')
     );
 
     const element = {
