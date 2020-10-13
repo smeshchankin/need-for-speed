@@ -45,9 +45,9 @@ import Music from "modules/Music.js";
     }
 
     class Game {
-        constructor(playerCar, road, music) {
-            this.playerCar = playerCar;
-            this.enemiyCars = [];
+        constructor(road, music) {
+            this.playerCar = new Car(2, 'red', 'img/sapuar.png');
+            this.enemiyCars = Array.from({ length: 3 }, () => new Car(2, 'red', 'img/sapuar.png'));
             this.road = road;
             this.music = music;
 
@@ -75,7 +75,6 @@ import Music from "modules/Music.js";
     }
 
     const game = new Game(
-        new Car(2, 'red', 'img/sapuar.png'),
         new Road('.area', 300, 4),
         new Music('audio/race.mp3')
     );
