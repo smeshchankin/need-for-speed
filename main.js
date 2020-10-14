@@ -27,6 +27,11 @@ import Music from "modules/Music.js";
             this.lane = lane;
             this.color = color;
             this.image = image;
+
+            const element = document.createElement('div');
+            definePropertyY(element);
+            element.classList.add('enemy');
+            this.element = element;
         }
 
         setLane(lane) {
@@ -37,10 +42,12 @@ import Music from "modules/Music.js";
             this.x = x;
             if (y !== undefined) {
                 this.y = y;
+                this.element.y = y;
             }
         }
 
-        draw() {
+        reset() {
+            resetEnemyCar(this.element, true);
         }
     }
 
@@ -64,7 +71,7 @@ import Music from "modules/Music.js";
             this._started = true;
             this.music.start();
             this.road.drawMarkings();
-            this.enemyCars.forEach(emeny => emeny.draw());
+            this.enemyCars.forEach(emeny => emeny.reset());
             requestAnimationFrame(play);
         }
 
