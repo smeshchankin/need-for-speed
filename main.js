@@ -41,13 +41,19 @@ import Music from "modules/Music.js";
         setPosition(x, y) {
             this.x = x;
             if (y !== undefined) {
-                this.y = y;
                 this.element.y = y;
             }
         }
 
         reset() {
             resetEnemyCar(this.element, true);
+        }
+
+        move() {
+            this.element.y += this.speed;
+            if (this.y > element.area.offsetHeight) {
+                resetEnemyCar(this.element, false);
+            }
         }
     }
 
@@ -64,6 +70,8 @@ import Music from "modules/Music.js";
         start() {
             const play = () => {
                 if (this._started) {
+                    this.enemiyCars.forEach(enemy => enemy.move());
+
                     requestAnimationFrame(play);
                 }
             };
