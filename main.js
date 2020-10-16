@@ -6,19 +6,31 @@ import Music from "modules/Music.js";
             this.selector = selector;
             this.width = +width;
             this.laneCount = +laneCount;
+            this._lines = [];
         }
 
         init() {
             this.element = document.querySelector(this.selector);
             this.element.style.width = this.width + 'px';
 
-            const totalLines = Math.ceil(this.element.offsetHeight / (150 + 50));
+            this._totalLines = Math.ceil(this.element.offsetHeight / (150 + 50));
             const offset = this.width / this.laneCount;
             for (let id = 0; id < totalLines + 1; ++id) {
                 for (let laneId = 1; laneId < this.laneCount; ++laneId) {
-                    element.area.append(element.line(id, laneId * offset - 5));
+                    const line = element.line(id, laneId * offset - 5);
+                    this._lines.push(line);
+                    element.area.append(line);
                 }
             }
+        }
+
+        move() {
+            this._lines.forEach(line => {
+                line.y += settings.speed;
+                if (line.y > element.area.offsetHeight) {
+                    line.y -= (this._totalLines + 1) * (150 + 50);
+                }
+            });
         }
     }
 
@@ -71,6 +83,7 @@ import Music from "modules/Music.js";
             const play = () => {
                 if (this._started) {
                     this.enemiyCars.forEach(enemy => enemy.move());
+                    this.road.mode();
 
                     requestAnimationFrame(play);
                 }
