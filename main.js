@@ -10,6 +10,18 @@ import Music from "modules/Music.js";
         }
 
         init() {
+            const createLine = (id, offsetLeft) => {
+                const line = document.createElement('div');
+                definePropertyY(line);
+                line.classList.add('line');
+                if (offsetLeft) {
+                    line.style.left = offsetLeft + 'px';
+                }
+                line.y = (150 + 50) * id;
+    
+                return line;
+            };
+
             this.element = document.querySelector(this.selector);
             this.element.style.width = this.width + 'px';
 
@@ -17,9 +29,9 @@ import Music from "modules/Music.js";
             const offset = this.width / this.laneCount;
             for (let id = 0; id < totalLines + 1; ++id) {
                 for (let laneId = 1; laneId < this.laneCount; ++laneId) {
-                    const line = element.line(id, laneId * offset - 5);
+                    const line = createLine(id, laneId * offset - 5);
                     this._lines.push(line);
-                    element.area.append(line);
+                    this.element.append(line);
                 }
             }
         }
