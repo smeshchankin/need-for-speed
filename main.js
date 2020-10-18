@@ -81,6 +81,32 @@ import Music from "modules/Music.js";
         }
     }
 
+    class KeyHandlers {
+        constructor() {
+            this._keys = {
+                ArrowUp: false,
+                ArrowDown: false,
+                ArrowRight: false,
+                ArrowLeft: false
+            };
+        }
+
+        init() {
+            const keyDownHandler = event => keyboardHandler(event, true);
+            const keyUpHandler = event => keyboardHandler(event, false);
+
+            function keyboardHandler(event, state) {
+                if (this.keys[event.key] !== undefined) {
+                    event.preventDefault();
+                    this.keys[event.key] = state;
+                }
+            }
+
+            document.addEventListener('keydown', keyDownHandler);
+            document.addEventListener('keyup', keyUpHandler);
+        }
+    }
+
     class Game {
         constructor(road, music) {
             this.playerCar = new Car(2, 'red', 'img/sapuar.png');
