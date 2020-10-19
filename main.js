@@ -91,6 +91,10 @@ import Music from "modules/Music.js";
             };
         }
 
+        addKey(keyname) {
+            this._keys[keyname] = false;
+        }
+
         init() {
             const keyDownHandler = event => keyboardHandler(event, true);
             const keyUpHandler = event => keyboardHandler(event, false);
