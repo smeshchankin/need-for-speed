@@ -111,6 +111,25 @@ import Music from "modules/Music.js";
         }
     }
 
+    class TouchHandler {
+        constructor() {
+        }
+
+        addStartHandler(handler) {
+            document.addEventListener('touchstart', function(event) {
+                let data = event.changedTouches[0];
+                handler(data.screenX, data.screenY);
+            }, false);
+        }
+
+        addEndHandler(handler) {
+            document.addEventListener('touchend', function(event) {
+                let data = event.changedTouches[0];
+                handler(data.screenX, data.screenY);
+            }, false);
+        }
+    }
+
     class Game {
         constructor(road, music) {
             this.playerCar = new Car(2, 'red', 'img/sapuar.png');
