@@ -115,18 +115,17 @@ import Music from "modules/Music.js";
         constructor() {
         }
 
+        _handler(event, handler) {
+            let data = event.changedTouches[0];
+            handler(data.screenX, data.screenY);
+        }
+
         addStartHandler(handler) {
-            document.addEventListener('touchstart', function(event) {
-                let data = event.changedTouches[0];
-                handler(data.screenX, data.screenY);
-            }, false);
+            document.addEventListener('touchstart', event =>_handler(event, handler), false);
         }
 
         addEndHandler(handler) {
-            document.addEventListener('touchend', function(event) {
-                let data = event.changedTouches[0];
-                handler(data.screenX, data.screenY);
-            }, false);
+            document.addEventListener('touchend', event => _handler(event, handler), false);
         }
     }
 
