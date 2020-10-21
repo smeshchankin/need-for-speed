@@ -111,7 +111,7 @@ import Music from "modules/Music.js";
         }
     }
 
-    class TouchHandler {
+    class TouchHandlers {
         constructor() {
         }
 
@@ -122,10 +122,12 @@ import Music from "modules/Music.js";
 
         addStartHandler(handler) {
             document.addEventListener('touchstart', event =>_handler(event, handler), false);
+            return this;
         }
 
         addEndHandler(handler) {
             document.addEventListener('touchend', event => _handler(event, handler), false);
+            return this;
         }
     }
 
@@ -220,15 +222,12 @@ import Music from "modules/Music.js";
     document.addEventListener('keydown', keyDownHandler);
     document.addEventListener('keyup', keyUpHandler);
 
-    document.addEventListener('touchstart', function(event) {
-        let data = event.changedTouches[0];
-        touch.start = { x: data.screenX, y: data.screenY };
-        touch.end = { x: data.screenX, y: data.screenY };
-    }, false);
-    document.addEventListener('touchend', function(event) {
-        let data = event.changedTouches[0];
-        touch.end = { x: data.screenX, y: data.screenY };
-    }, false);
+    new TouchHandlers()
+        .addStartHandler((x, y) => {
+            touch.start = { x, y };
+            touch.end = { x, y };
+        })
+        .addEndHandler((x, y) => touch.end = { x, y });
 
     function startGame() {
         element.area.innerHTML = '';
