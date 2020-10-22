@@ -83,16 +83,12 @@ import Music from "modules/Music.js";
 
     class KeyHandlers {
         constructor() {
-            this._keys = {
-                ArrowUp: false,
-                ArrowDown: false,
-                ArrowRight: false,
-                ArrowLeft: false
-            };
+            this._keys = { };
         }
 
         addKey(keyname) {
             this._keys[keyname] = false;
+            return this;
         }
 
         init() {
@@ -228,6 +224,13 @@ import Music from "modules/Music.js";
             touch.end = { x, y };
         })
         .addEndHandler((x, y) => touch.end = { x, y });
+
+    new KeyHandlers()
+        .addKey("ArrowUp")
+        .addKey("ArrowDown")
+        .addKey("ArrowRight")
+        .addKey("ArrowLeft")
+        .init();
 
     function startGame() {
         element.area.innerHTML = '';
