@@ -1,4 +1,4 @@
-import Music from "modules/Music.js";
+import Music from "./modules/Music.js";
 
 (function() {
     class Road {
@@ -96,7 +96,7 @@ import Music from "modules/Music.js";
             const keyUpHandler = event => keyboardHandler(event, false);
 
             function keyboardHandler(event, state) {
-                if (this.keys[event.key] !== undefined) {
+                if (this && this.keys[event.key] !== undefined) {
                     event.preventDefault();
                     this.keys[event.key] = state;
                 }
