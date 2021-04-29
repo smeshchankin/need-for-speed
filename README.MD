@@ -9,3 +9,6 @@ Project Technologies:
 * HTML 5
 * CSS
 * Pure JavaScript
+
+### Known issues
+* Swiping on mobile phones was broken
