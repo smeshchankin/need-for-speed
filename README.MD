@@ -1,5 +1,5 @@
 # Need For Speed
-[Open GtHub Pages](http://smeshchankin.github.io/need-for-speed)
+[Open GitHub Pages](http://smeshchankin.github.io/need-for-speed)
 
 Need For Speed is a JavaScript game.
 Adaptive for any screen resolution.
